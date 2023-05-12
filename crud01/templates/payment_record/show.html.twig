@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PaymentRecord{% endblock %}
+
+{% block body %}
+    <h1>PaymentRecord</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ payment_record.id }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ payment_record.status }}</td>
+            </tr>
+            <tr>
+                <th>DateTime</th>
+                <td>{{ payment_record.dateTime ? payment_record.dateTime|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_payment_record_index') }}">back to list</a>
+
+    <a href="{{ path('app_payment_record_edit', {'id': payment_record.id}) }}">edit</a>
+
+    {{ include('payment_record/_delete_form.html.twig') }}
+{% endblock %}

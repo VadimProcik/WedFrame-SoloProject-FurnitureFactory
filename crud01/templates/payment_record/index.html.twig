@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PaymentRecord index{% endblock %}
+
+{% block body %}
+    <h1>PaymentRecord index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Status</th>
+                <th>DateTime</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for payment_record in payment_records %}
+            <tr>
+                <td>{{ payment_record.id }}</td>
+                <td>{{ payment_record.status }}</td>
+                <td>{{ payment_record.dateTime ? payment_record.dateTime|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_payment_record_show', {'id': payment_record.id}) }}">show</a>
+                    <a href="{{ path('app_payment_record_edit', {'id': payment_record.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_payment_record_new') }}">Create new</a>
+{% endblock %}
