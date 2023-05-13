@@ -47,10 +47,48 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('app_payment_record_new') }}">CRUD payment record</a>
                     </li>
+                    {% if is_granted('ROLE_FITTER') %}
+                        {# only fitters with ROLE_FITTER can see these links #}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('app_photo_index') }}">CRUD fitters photo</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                <ul class="navbar-nav ms-auto">
+
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('app_logout') }}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" >
+                                Login
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <form method="post" action="{{ url('app_login') }}">
+                                        <div class="mb-3">
+                                            <label for="username" class="form-label">Username</label>
+                                            <input type="text" id="username" name="_username" class="form-control" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="password" class="form-label">Password</label>
+                                            <input type="password" id="password" name="_password" class="form-control" required>
+                                        </div>
+                                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                                        <button type="submit" class="btn btn-primary">Login</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    {% endif %}
+
                 </ul>
             </div>
         </div>
     </nav>
+
 
     <div class="container">
             <div class="row">

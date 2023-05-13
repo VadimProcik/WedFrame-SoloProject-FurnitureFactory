@@ -47,5 +47,8 @@ class AppFixtures extends Fixture
         $personName = PersonFactory::createOne(['name' => 'Millie Bobby Brown']);
         $person1Name = PersonFactory::createOne(['name' => 'Brendan Fox']);
         $person2Name = PersonFactory::createOne(['name' => 'Harry Potter']);
+
+        $paidStatus = PaymentRecordFactory::createOne(['status' => 'paid']);
+        $unpaidStatus = PaymentRecordFactory::createOne(['status' => 'unpaid']);
     }
 }
