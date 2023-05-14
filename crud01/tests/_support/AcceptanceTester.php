@@ -23,4 +23,7 @@ class AcceptanceTester extends \Codeception\Actor
    /**
     * Define custom actions here
     */
+    public function grabFromDatabase(string $string, string $string1, array $array)
+    {
+    }
 }
